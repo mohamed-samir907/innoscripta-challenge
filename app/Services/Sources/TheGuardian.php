@@ -39,7 +39,7 @@ final class TheGuardian implements NewsSourceInterface
                 source: 'The Guardian',
                 category: $article['sectionName'],
                 title: $article['webTitle'],
-                content: $article['fields']['body'] ?? '',
+                content: strip_tags($article['fields']['body']) ?? '',
                 url: $article['webUrl'],
                 imageUrl: $article['elements'][0]['assets'][0]['file'] ?? '',
                 publishedAt: Carbon::parse($article['webPublicationDate']),

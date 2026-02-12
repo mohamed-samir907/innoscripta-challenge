@@ -1,4 +1,4 @@
-.PHONY: up build down logs ps shell db migrate tinker
+.PHONY: up build down logs ps shell db migrate tinker queue-monitor queue-work
 
 up:
 	docker compose up -d
@@ -26,3 +26,9 @@ migrate:
 
 tinker:
 	docker exec -it news_app php artisan tinker
+
+queue-monitor:
+	docker exec -it news_app php artisan queue:monitor default
+
+queue-work:
+	docker exec -it news_app php artisan queue:work

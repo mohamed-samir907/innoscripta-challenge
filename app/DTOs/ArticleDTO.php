@@ -15,5 +15,23 @@ readonly class ArticleDTO
         public string $url,
         public string $imageUrl,
         public Carbon $publishedAt,
-    ) {}
+    ) {
+    }
+
+    /**
+     * @return array<string, mixed>
+     */
+    public function toModel(): array
+    {
+        return [
+            'title' => $this->title,
+            'content' => $this->content,
+            'author' => $this->author,
+            'source' => $this->source,
+            'category' => $this->category,
+            'url' => $this->url,
+            'image_url' => $this->imageUrl,
+            'published_at' => $this->publishedAt,
+        ];
+    }
 }
