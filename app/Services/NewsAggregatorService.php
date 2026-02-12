@@ -5,7 +5,7 @@ namespace App\Services;
 use App\Factories\NewsSourceFactory;
 use App\Repositories\ArticleRepository;
 
-final class NewsAggregatorService
+class NewsAggregatorService
 {
     public function __construct(
         private ArticleRepository $articleRepository,

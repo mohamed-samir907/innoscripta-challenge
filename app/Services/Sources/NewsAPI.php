@@ -8,7 +8,7 @@ use App\Support\NewsHttpClient;
 use Carbon\Carbon;
 use Illuminate\Support\LazyCollection;
 
-final class NewsAPI implements NewsSourceInterface
+class NewsAPI implements NewsSourceInterface
 {
     public function __construct(
         private NewsHttpClient $http,

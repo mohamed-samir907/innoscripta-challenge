@@ -8,7 +8,7 @@ use App\Support\NewsHttpClient;
 use App\Contracts\NewsSourceInterface;
 use Illuminate\Support\LazyCollection;
 
-final class TheGuardian implements NewsSourceInterface
+class TheGuardian implements NewsSourceInterface
 {
     public function __construct(
         private NewsHttpClient $http,

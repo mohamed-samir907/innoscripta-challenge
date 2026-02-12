@@ -5,7 +5,7 @@ namespace App\Support;
 use Illuminate\Http\Client\Response;
 use Illuminate\Support\Facades\Http;
 
-final class NewsHttpClient
+class NewsHttpClient
 {
     private const HTTP_TIMEOUT = 5;
 

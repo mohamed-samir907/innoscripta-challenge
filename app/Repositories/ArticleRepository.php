@@ -4,7 +4,7 @@ namespace App\Repositories;
 
 use App\Models\Article;
 
-final class ArticleRepository
+class ArticleRepository
 {
     public function find(int $id): ?Article
     {
