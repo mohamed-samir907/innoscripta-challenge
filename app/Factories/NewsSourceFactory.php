@@ -13,9 +13,9 @@ class NewsSourceFactory
     public static function create(string $name): NewsSourceInterface
     {
         return match (strtolower($name)) {
-            'newsapi' => new NewsAPI,
-            'guardian' => new TheGuardian,
-            'nytimes' => new NYTimes,
+            'newsapi' => app(NewsAPI::class),
+            'guardian' => app(TheGuardian::class),
+            'nytimes' => app(NYTimes::class),
             default => throw new SourceNotFoundException("source: {$name} not found"),
         };
     }

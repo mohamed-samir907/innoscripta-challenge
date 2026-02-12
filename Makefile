@@ -1,4 +1,4 @@
-.PHONY: up build down logs ps shell db migrate
+.PHONY: up build down logs ps shell db migrate tinker
 
 up:
 	docker compose up -d
@@ -23,3 +23,6 @@ db:
 
 migrate:
 	docker exec -it news_app php artisan migrate
+
+tinker:
+	docker exec -it news_app php artisan tinker
