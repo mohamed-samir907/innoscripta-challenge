@@ -1,0 +1,64 @@
+services:
+  app:
+    image: news-app
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: news_app
+    extra_hosts:
+      - 'host.docker.internal:host-gateway'
+    ports:
+      - "8000:80"
+    entrypoint: php artisan octane:frankenphp --host=0.0.0.0 --port=80
+    volumes:
+      - ".:/app"
+    networks:
+      - news
+    depends_on:
+      - mysql
+      - redis
+
+  mysql:
+    image: mysql:8.4
+    container_name: news_mysql
+    ports:
+      - "3301:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: '${DB_PASSWORD}'
+      MYSQL_ROOT_HOST: '%'
+      MYSQL_DATABASE: '${DB_DATABASE}'
+      MYSQL_USER: '${DB_USERNAME}'
+      MYSQL_PASSWORD: '${DB_PASSWORD}'
+      MYSQL_ALLOW_EMPTY_PASSWORD: 1
+    volumes:
+      - "mysql:/var/lib/mysql"
+    networks:
+      - news
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-p${DB_PASSWORD}"]
+      retries: 3
+      timeout: 5s
+
+  redis:
+    image: redis:alpine
+    container_name: news_redis
+    ports:
+        - "6370:6379"
+    volumes:
+        - "redis:/data"
+    networks:
+        - news
+    healthcheck:
+        test: ["CMD", "redis-cli", "ping"]
+        retries: 3
+        timeout: 5s
+
+volumes:
+  mysql:
+    name: news_mysql
+  redis:
+    name: news_redis
+
+networks:
+  news:
+    driver: bridge
