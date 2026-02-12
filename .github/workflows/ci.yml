@@ -39,13 +39,17 @@ jobs:
 
     - name: Wait for MySQL to be ready
       run: |
+        until docker exec news_mysql mysqladmin ping -ppassword --silent; do
+          echo "Waiting for main MySQL..."
+          sleep 2
+        done
         until docker exec news_mysql_test mysqladmin ping -ppassword --silent; do
-          echo "Waiting for MySQL..."
+          echo "Waiting for test MySQL..."
           sleep 2
         done
 
     - name: Run Migrations
-      run: docker exec news_app php artisan migrate --force
+      run: docker exec -e DB_HOST=mysql -e DB_PASSWORD=password news_app php artisan migrate --force
 
     - name: Run Tests
       run: docker exec -e DB_HOST=mysql_test -e DB_PORT=3306 -e DB_PASSWORD=password news_app php artisan test
