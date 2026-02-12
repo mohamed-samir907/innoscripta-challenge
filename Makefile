@@ -1,4 +1,4 @@
-.PHONY: up build down logs ps shell
+.PHONY: up build down logs ps shell db migrate
 
 up:
 	docker compose up -d
@@ -20,3 +20,6 @@ shell:
 
 db:
 	docker exec -it news_mysql mysql -u laravel -ppassword
+
+migrate:
+	docker exec -it news_app php artisan migrate
