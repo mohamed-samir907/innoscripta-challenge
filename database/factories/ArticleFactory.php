@@ -17,7 +17,14 @@ class ArticleFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'title' => $this->faker->sentence,
+            'content' => $this->faker->paragraphs(3, true),
+            'author' => $this->faker->name,
+            'source' => $this->faker->company,
+            'category' => $this->faker->word,
+            'url' => $this->faker->unique()->url,
+            'image_url' => $this->faker->imageUrl(),
+            'published_at' => $this->faker->dateTimeBetween('-1 year', 'now'),
         ];
     }
 }
