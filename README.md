@@ -12,7 +12,7 @@
 
 1.  **Clone the repository:**
     ```bash
-    git clone <repository-url>
+    git clone https://github.com/mohamed-samir907/innoscripta-challenge
     cd news-aggregator
     ```
 
@@ -36,7 +36,6 @@
     -   `news_mysql`: Main database (Port 3306)
     -   `news_mysql_test`: Test database (Port 3307)
     -   `news_redis`: Redis for caching/queues
-    -   `news_worker`: Queue worker
 
 5.  **Run Migrations:**
     ```bash
