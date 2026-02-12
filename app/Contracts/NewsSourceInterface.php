@@ -3,13 +3,14 @@
 namespace App\Contracts;
 
 use App\DTOs\ArticleDTO;
+use Illuminate\Support\LazyCollection;
 
 interface NewsSourceInterface
 {
     /**
      * @param array<string, mixed> $params
      *
-     * @return ArticleDTO[]
+     * @return LazyCollection<int, ArticleDTO>
      */
-    public function fetch(array $params = []): array;
+    public function fetch(array $params = []): LazyCollection;
 }
