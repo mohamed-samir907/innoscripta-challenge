@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\ArticleController;
+use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\FeedController;
 use App\Http\Controllers\Api\UserPreferenceController;
 use Illuminate\Http\Request;
@@ -13,7 +14,11 @@ Route::get('/user', function (Request $request) {
 Route::get('/articles', [ArticleController::class, 'index']);
 Route::get('/articles/{id}', [ArticleController::class, 'show']);
 
+Route::post('/register', [AuthController::class, 'register']);
+Route::post('/login', [AuthController::class, 'login']);
+
 Route::middleware('auth:sanctum')->group(function () {
+    Route::post('/logout', [AuthController::class, 'logout']);
     Route::get('/user/preferences', [UserPreferenceController::class, 'index']);
     Route::post('/user/preferences', [UserPreferenceController::class, 'store']);
     Route::get('/feed', [FeedController::class, 'index']);
